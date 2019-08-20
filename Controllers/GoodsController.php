@@ -23,7 +23,7 @@ Class GoodsController
     public function __construct()
     {
         $this->goodsModel = new goodsModel();
-//        $this->sortLink = $this->goodsModel->setSelectGoods();
+        $this->sortLink = $this->goodsModel->setSelectGoods();
 //        var_dump($this->sortLink);die;
         $this->nowPage = $_GET['page'];
 //        var_dump($this->nowPage);die;

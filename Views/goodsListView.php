@@ -66,7 +66,7 @@
     <table class='recordList' id='goodsTable'>
         <tr>
             <th><a href="?column=GoodsID&sort=<?php $this->sortLink ?>&page=<?php $_GET['page'] ?>">ID</a></th>
-<!--            --><?php //var_dump($_GET['page']);die; ?>
+<!--            --><?php //var_dump($this->sortLink);die; ?>
             <th><a href="?column=GoodsName&sort=<?php $this->sortLink ?>&page=<?php $_GET['page'] ?>">商品名</a></th>
             <th></th>
             <th></th>
