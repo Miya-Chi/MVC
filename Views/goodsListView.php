@@ -58,18 +58,22 @@
 <!-- 一覧 -->
 <div>
     <!-- Total number of goods -->
-    <h4>Total: <?php echo $totalNumber; ?></h4>
+    <h4>Total: <?php echo $totalNumber;
+//    var_dump($totalNumber);die;?>
+    </h4>
 
     <!-- Goods table -->
     <table class='recordList' id='goodsTable'>
         <tr>
-            <th><a href="?column=GoodsID&sort=<?php $this->sortLink ?>&page=<?php $nowPage ?>">ID</a></th>
-<!--            --><?php //var_dump($this->sortLink) ?>
-            <th><a href="?column=GoodsName&sort=<?php $this->sortLink ?>&page=<?php $nowPage ?>">商品名</a></th>
+            <th><a href="?column=GoodsID&sort=<?php $this->sortLink ?>&page=<?php $_GET['page'] ?>">ID</a></th>
+<!--            --><?php //var_dump($_GET['page']);die; ?>
+            <th><a href="?column=GoodsName&sort=<?php $this->sortLink ?>&page=<?php $_GET['page'] ?>">商品名</a></th>
             <th></th>
             <th></th>
         </tr>
-        <?php foreach ($rows = $goods->fetchAll(PDO::FETCH_ASSOC) as $row): ?>
+        <?php foreach ($rows = $goods->fetchAll(PDO::FETCH_ASSOC) as $row):
+//            var_dump($goods);die;
+            ?>
             <tr>
                 <td><?php echo $row['GoodsID'] ?></td>
                 <td><?php echo $row['GoodsName'] ?></td>

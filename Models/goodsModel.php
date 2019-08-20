@@ -53,6 +53,17 @@ Class goodsModel extends DB
         }
     }
 
+    public function showPage()
+    {
+        $this->setSelectGoods();
+        // LIMIT, OFFSET
+        if (!isset($_GET['page'])) {
+            $_GET['page'] = 1;
+        }
+        $offset = (intval($_GET['page']) - 1) * self::limit;
+//                var_dump($_GET['page']);die;
+    }
+
 //    public function sortSort()
 //    {
 //        $this->setSelectGoods();
@@ -60,6 +71,22 @@ Class goodsModel extends DB
 //        $sortL = "";
 //        $array = array("$sortB" =>  "$this->sortButton", "$sortL" => "$this->sortLink" );
 //        return $array;
+//    }
+
+
+//    /**
+//     * ページ番号取得
+//     */
+//    public function getPage()
+//    {
+//        $this->setSelectGoods();
+//        // LIMIT, OFFSET
+//        if (!isset($_GET['page'])) {
+//            $_GET['page'] = 1;
+//        }
+//        $offset = (intval($_GET['page']) - 1) * self::limit;
+////                var_dump($_GET['page']);die;
+//        return $offset;
 //    }
 
     /**
@@ -86,10 +113,14 @@ Class goodsModel extends DB
             $_GET['page'] = 1;
         }
         $offset = (intval($_GET['page']) - 1) * self::limit;
+//                var_dump($_GET['page']);die;
+
+//        $this->getPage();
         // Execute SQL.
-        $sql = "SELECT * FROM goods ORDER BY {$this->column} {$this->sort} LIMIT {$this->limit} OFFSET {$offset}";
+        $sql = "SELECT * FROM goods ORDER BY {$this->column} {$this->sortButton} LIMIT {$this->limit}";
         $res = parent::executeSQL($sql, null);
         return $res;
+
     }
 
     /**

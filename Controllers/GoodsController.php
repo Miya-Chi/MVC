@@ -18,12 +18,15 @@ Class GoodsController
 
     private $sortLink;
     private $sortKs;
+    private $nowPage;
 
     public function __construct()
     {
         $this->goodsModel = new goodsModel();
-        $this->sortLink = $this->goodsModel->setSelectGoods();
+//        $this->sortLink = $this->goodsModel->setSelectGoods();
 //        var_dump($this->sortLink);die;
+        $this->nowPage = $_GET['page'];
+//        var_dump($this->nowPage);die;
     }
 
     /**
@@ -50,6 +53,14 @@ Class GoodsController
      */
     public function renderListPage()
     {
+//        $this->goodsModel->getPage();
+        $this->goodsModel->setSelectGoods();
+        // LIMIT, OFFSET
+        if (!isset($_GET['page'])) {
+//            var_dump($_GET['page']);die;
+            $_GET['page'] = 1;
+        }
+
         // 新規登録ボタンが押されたら
         if (isset($_POST['submitEntry'])) {
             $this->errorMsgs = $this->goodsModel->validate();
@@ -93,6 +104,7 @@ Class GoodsController
             printf("<a href='/MVC/public/goods/index.php?sort=%s&page=%d'>%dページへ</a><br />\n", $_POST['sort'], $i, $i);
         }
     }
+
 
     /**
      * 商品削除
